@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Find tutors — PeerTutor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="logo" href="index.html">Peer<span>Tutor</span></a>
+      <nav class="nav-main" aria-label="Main">
+        <a href="index.html">Home</a>
+        <a href="search.html" aria-current="page">Find tutors</a>
+        <a href="tutors.html">Browse &amp; book</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <header class="page-head">
+        <h1>Find your tutor</h1>
+        <p>Set filters below, then open matching listings to book a session.</p>
+      </header>
+
+      <div class="search-layout">
+        <aside class="filters" aria-labelledby="filters-heading">
+          <h2 id="filters-heading">Filters</h2>
+          <form id="search-form" action="tutors.html" method="get">
+            <div class="field">
+              <label for="q">Keywords</label>
+              <input type="search" id="q" name="q" placeholder="e.g. calculus, essay, Python" autocomplete="off" />
+            </div>
+
+            <div class="field">
+              <label for="subject">Subject</label>
+              <select id="subject" name="subject">
+                <option value="">Any subject</option>
+                <option value="math">Mathematics</option>
+                <option value="cs">Computer science</option>
+                <option value="writing">Writing &amp; humanities</option>
+                <option value="languages">Languages</option>
+                <option value="science">Sciences</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="level">Course level</label>
+              <select id="level" name="level">
+                <option value="">Any level</option>
+                <option value="hs">High school</option>
+                <option value="ug">Undergraduate</option>
+                <option value="grad">Graduate</option>
+              </select>
+            </div>
+
+            <div class="field field--inline">
+              <div class="field">
+                <label for="price_max">Max $/hr</label>
+                <input type="number" id="price_max" name="price_max" min="0" max="200" step="5" placeholder="e.g. 40" />
+              </div>
+              <div class="field">
+                <label for="rating_min">Min rating</label>
+                <select id="rating_min" name="rating_min">
+                  <option value="">Any</option>
+                  <option value="4.5">4.5+</option>
+                  <option value="4.7">4.7+</option>
+                  <option value="4.9">4.9+</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="format">Session format</label>
+              <select id="format" name="format">
+                <option value="">Any</option>
+                <option value="online">Online only</option>
+                <option value="inperson">In-person only</option>
+              </select>
+            </div>
+
+            <fieldset class="field" style="border: none; padding: 0; margin: 0 0 1rem;">
+              <legend style="font-size: 0.85rem; font-weight: 600; color: var(--ink-muted); margin-bottom: 0.35rem;">Availability (days)</legend>
+              <div class="checkbox-group">
+                <label><input type="checkbox" name="day" value="mon" /> Monday</label>
+                <label><input type="checkbox" name="day" value="wed" /> Wednesday</label>
+                <label><input type="checkbox" name="day" value="sat" /> Saturday</label>
+              </div>
+            </fieldset>
+
+            <div class="filter-actions">
+              <button type="submit" class="btn btn--primary">View matching tutors</button>
+              <a class="btn btn--ghost" href="tutors.html">Browse all tutors</a>
+            </div>
+          </form>
+        </aside>
+
+        <div>
+          <p class="search-hint">
+            <strong>Tip:</strong> Use keywords plus subject for the best results. On the next page, listings update from the query string in your address bar (demo behavior).
+          </p>
+          <section aria-labelledby="preview-heading">
+            <h2 id="preview-heading" class="section__title" style="text-align: left; margin-bottom: 0.75rem;">Popular right now</h2>
+            <div class="tutor-grid" style="grid-template-columns: 1fr;">
+              <article class="tutor-card">
+                <div class="tutor-card__top">
+                  <div class="tutor-card__avatar" role="img" aria-label=""></div>
+                  <div class="tutor-card__head">
+                    <h3>Calculus &amp; linear algebra</h3>
+                    <p class="tutor-card__meta">Undergrad · Online</p>
+                    <p class="tutor-card__rating" aria-label="Rating 4.9 out of 5">★ 4.9 <span style="color: var(--ink-muted); font-weight: 500;">(62)</span></p>
+                  </div>
+                </div>
+                <div class="tutor-card__body">
+                  <div class="tutor-card__tags">
+                    <span class="tag">Math</span>
+                    <span class="tag">STEM</span>
+                  </div>
+                  <p class="tutor-card__bio">Exam prep and homework walkthroughs for Calc I–III and intro linear algebra.</p>
+                </div>
+                <div class="tutor-card__foot">
+                  <span class="tutor-card__price">$32 <small>/ hr</small></span>
+                  <a class="btn btn--primary btn--sm" href="tutors.html?subject=math">See tutors</a>
+                </div>
+              </article>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <p>© PeerTutor — demo layout for a student marketplace.</p>
+      <p><a href="index.html">Home</a></p>
+    </div>
+  </footer>
+</body>
+</html>

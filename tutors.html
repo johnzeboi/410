@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Browse &amp; book — PeerTutor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="logo" href="index.html">Peer<span>Tutor</span></a>
+      <nav class="nav-main" aria-label="Main">
+        <a href="index.html">Home</a>
+        <a href="search.html">Find tutors</a>
+        <a href="tutors.html" aria-current="page">Browse &amp; book</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <header class="page-head">
+        <h1>Tutors available to book</h1>
+        <p>Demo profiles — click <strong>Book</strong> to open the scheduling form.</p>
+      </header>
+
+      <div class="toolbar">
+        <p class="toolbar__meta" id="result-count" aria-live="polite">Showing all tutors</p>
+        <div class="chips" id="active-filters" aria-label="Active filters"></div>
+      </div>
+
+      <div class="tutor-grid" id="tutor-grid">
+        <article
+          class="tutor-card"
+          data-subject="math"
+          data-level="ug"
+          data-price="28"
+          data-rating="4.8"
+          data-format="online"
+          data-days="mon,wed"
+          data-name="Jordan Lee"
+          data-keywords="calculus algebra homework"
+        >
+          <div class="tutor-card__top">
+            <div class="tutor-card__avatar" role="img" aria-hidden="true"></div>
+            <div class="tutor-card__head">
+              <h3>Jordan Lee</h3>
+              <p class="tutor-card__meta">Junior · Applied math</p>
+              <p class="tutor-card__rating" aria-label="Rating 4.8 out of 5">★ 4.8 <span style="color: var(--ink-muted); font-weight: 500;">(34)</span></p>
+            </div>
+          </div>
+          <div class="tutor-card__body">
+            <div class="tutor-card__tags">
+              <span class="tag">Math</span>
+              <span class="tag">Calc I–II</span>
+            </div>
+            <p class="tutor-card__bio">Problem-set help and exam strategies. Happy to work through proofs slowly.</p>
+          </div>
+          <div class="tutor-card__foot">
+            <span class="tutor-card__price">$28 <small>/ hr</small></span>
+            <button type="button" class="btn btn--primary btn--sm book-btn" data-tutor="Jordan Lee">Book</button>
+          </div>
+        </article>
+
+        <article
+          class="tutor-card"
+          data-subject="cs"
+          data-level="ug"
+          data-price="35"
+          data-rating="4.9"
+          data-format="online"
+          data-days="wed,sat"
+          data-name="Sam Rivera"
+          data-keywords="python data structures algorithms"
+        >
+          <div class="tutor-card__top">
+            <div class="tutor-card__avatar" role="img" aria-hidden="true"></div>
+            <div class="tutor-card__head">
+              <h3>Sam Rivera</h3>
+              <p class="tutor-card__meta">Senior · Computer science</p>
+              <p class="tutor-card__rating" aria-label="Rating 4.9 out of 5">★ 4.9 <span style="color: var(--ink-muted); font-weight: 500;">(51)</span></p>
+            </div>
+          </div>
+          <div class="tutor-card__body">
+            <div class="tutor-card__tags">
+              <span class="tag">CS</span>
+              <span class="tag">Python</span>
+            </div>
+            <p class="tutor-card__bio">Debug sprints, Big-O intuition, and project architecture for intro–intermediate CS.</p>
+          </div>
+          <div class="tutor-card__foot">
+            <span class="tutor-card__price">$35 <small>/ hr</small></span>
+            <button type="button" class="btn btn--primary btn--sm book-btn" data-tutor="Sam Rivera">Book</button>
+          </div>
+        </article>
+
+        <article
+          class="tutor-card"
+          data-subject="writing"
+          data-level="ug"
+          data-price="22"
+          data-rating="4.7"
+          data-format="inperson"
+          data-days="mon"
+          data-name="Alex Chen"
+          data-keywords="essay rhetoric english thesis"
+        >
+          <div class="tutor-card__top">
+            <div class="tutor-card__avatar" role="img" aria-hidden="true"></div>
+            <div class="tutor-card__head">
+              <h3>Alex Chen</h3>
+              <p class="tutor-card__meta">Sophomore · English</p>
+              <p class="tutor-card__rating" aria-label="Rating 4.7 out of 5">★ 4.7 <span style="color: var(--ink-muted); font-weight: 500;">(19)</span></p>
+            </div>
+          </div>
+          <div class="tutor-card__body">
+            <div class="tutor-card__tags">
+              <span class="tag">Writing</span>
+              <span class="tag">In-person</span>
+            </div>
+            <p class="tutor-card__bio">Outlines, thesis tightening, and citation cleanup for humanities papers.</p>
+          </div>
+          <div class="tutor-card__foot">
+            <span class="tutor-card__price">$22 <small>/ hr</small></span>
+            <button type="button" class="btn btn--primary btn--sm book-btn" data-tutor="Alex Chen">Book</button>
+          </div>
+        </article>
+
+        <article
+          class="tutor-card"
+          data-subject="languages"
+          data-level="hs"
+          data-price="18"
+          data-rating="4.6"
+          data-format="online"
+          data-days="sat"
+          data-name="Morgan Patel"
+          data-keywords="spanish conversation grammar"
+        >
+          <div class="tutor-card__top">
+            <div class="tutor-card__avatar" role="img" aria-hidden="true"></div>
+            <div class="tutor-card__head">
+              <h3>Morgan Patel</h3>
+              <p class="tutor-card__meta">Gap year · Spanish (heritage speaker)</p>
+              <p class="tutor-card__rating" aria-label="Rating 4.6 out of 5">★ 4.6 <span style="color: var(--ink-muted); font-weight: 500;">(12)</span></p>
+            </div>
+          </div>
+          <div class="tutor-card__body">
+            <div class="tutor-card__tags">
+              <span class="tag">Languages</span>
+              <span class="tag">Spanish</span>
+            </div>
+            <p class="tutor-card__bio">Conversational practice, grammar drills, and AP-style prep.</p>
+          </div>
+          <div class="tutor-card__foot">
+            <span class="tutor-card__price">$18 <small>/ hr</small></span>
+            <button type="button" class="btn btn--primary btn--sm book-btn" data-tutor="Morgan Patel">Book</button>
+          </div>
+        </article>
+
+        <article
+          class="tutor-card"
+          data-subject="science"
+          data-level="grad"
+          data-price="45"
+          data-rating="5"
+          data-format="online"
+          data-days="wed"
+          data-name="Riley Brooks"
+          data-keywords="chemistry organic lab report"
+        >
+          <div class="tutor-card__top">
+            <div class="tutor-card__avatar" role="img" aria-hidden="true"></div>
+            <div class="tutor-card__head">
+              <h3>Riley Brooks</h3>
+              <p class="tutor-card__meta">PhD student · Chemistry</p>
+              <p class="tutor-card__rating" aria-label="Rating 5 out of 5">★ 5.0 <span style="color: var(--ink-muted); font-weight: 500;">(8)</span></p>
+            </div>
+          </div>
+          <div class="tutor-card__body">
+            <div class="tutor-card__tags">
+              <span class="tag">Sciences</span>
+              <span class="tag">Organic chem</span>
+            </div>
+            <p class="tutor-card__bio">Mechanism maps, lab reports, and grad-level ochem support.</p>
+          </div>
+          <div class="tutor-card__foot">
+            <span class="tutor-card__price">$45 <small>/ hr</small></span>
+            <button type="button" class="btn btn--primary btn--sm book-btn" data-tutor="Riley Brooks">Book</button>
+          </div>
+        </article>
+
+        <article
+          class="tutor-card"
+          data-subject="math"
+          data-level="ug"
+          data-price="30"
+          data-rating="4.9"
+          data-format="inperson"
+          data-days="mon,sat"
+          data-name="Casey Nguyen"
+          data-keywords="statistics probability r studio"
+        >
+          <div class="tutor-card__top">
+            <div class="tutor-card__avatar" role="img" aria-hidden="true"></div>
+            <div class="tutor-card__head">
+              <h3>Casey Nguyen</h3>
+              <p class="tutor-card__meta">Senior · Statistics</p>
+              <p class="tutor-card__rating" aria-label="Rating 4.9 out of 5">★ 4.9 <span style="color: var(--ink-muted); font-weight: 500;">(41)</span></p>
+            </div>
+          </div>
+          <div class="tutor-card__body">
+            <div class="tutor-card__tags">
+              <span class="tag">Math</span>
+              <span class="tag">Stats / R</span>
+            </div>
+            <p class="tutor-card__bio">Hypothesis tests, regression, and R assignments explained clearly.</p>
+          </div>
+          <div class="tutor-card__foot">
+            <span class="tutor-card__price">$30 <small>/ hr</small></span>
+            <button type="button" class="btn btn--primary btn--sm book-btn" data-tutor="Casey Nguyen">Book</button>
+          </div>
+        </article>
+      </div>
+
+      <p class="empty-state" id="no-results" hidden>
+        <strong>No tutors match these filters.</strong><br />
+        <a href="tutors.html">Clear filters</a> or try broader options on <a href="search.html">Find tutors</a>.
+      </p>
+    </div>
+  </main>
+
+  <div class="booking-panel" id="booking-panel" role="dialog" aria-modal="true" aria-labelledby="booking-title" hidden>
+    <div class="booking-panel__dialog">
+      <div class="booking-panel__head">
+        <h2 id="booking-title">Book a session</h2>
+        <button type="button" class="booking-panel__close" id="booking-close" aria-label="Close">×</button>
+      </div>
+      <form class="booking-panel__form" id="booking-form">
+        <p class="field" style="margin-bottom: 1rem;">
+          <strong id="booking-tutor-name"></strong>
+        </p>
+        <div class="field">
+          <label for="session-length">Session length</label>
+          <select id="session-length" name="length" required>
+            <option value="">Choose…</option>
+            <option value="30">30 minutes</option>
+            <option value="60">1 hour</option>
+            <option value="90">90 minutes</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="session-time">Preferred start time</label>
+          <input type="datetime-local" id="session-time" name="start" required />
+        </div>
+        <div class="field">
+          <label for="session-note">What do you want to work on?</label>
+          <textarea id="session-note" name="note" rows="3" placeholder="Course, topic, or assignment"></textarea>
+        </div>
+        <div class="booking-submit">
+          <button type="submit" class="btn btn--primary">Send booking request (demo)</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <p>© PeerTutor — demo layout for a student marketplace.</p>
+      <p><a href="search.html">Adjust search</a></p>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var params = new URLSearchParams(window.location.search);
+      var cards = Array.prototype.slice.call(document.querySelectorAll(".tutor-card"));
+      var chipsEl = document.getElementById("active-filters");
+      var countEl = document.getElementById("result-count");
+      var emptyEl = document.getElementById("no-results");
+      var gridEl = document.getElementById("tutor-grid");
+
+      var labels = {
+        subject: { math: "Math", cs: "CS", writing: "Writing", languages: "Languages", science: "Sciences" },
+        level: { hs: "High school", ug: "Undergraduate", grad: "Graduate" },
+        format: { online: "Online", inperson: "In-person" },
+        day: { mon: "Mon", wed: "Wed", sat: "Sat" }
+      };
+
+      function addChip(text) {
+        var span = document.createElement("span");
+        span.className = "chip chip--live";
+        span.textContent = text;
+        chipsEl.appendChild(span);
+      }
+
+      var q = (params.get("q") || "").trim().toLowerCase();
+      var subject = params.get("subject") || "";
+      var level = params.get("level") || "";
+      var priceMax = params.get("price_max");
+      var ratingMin = params.get("rating_min");
+      var format = params.get("format") || "";
+      var days = params.getAll("day");
+
+      if (q) addChip('“' + params.get("q") + '”');
+      if (subject && labels.subject[subject]) addChip(labels.subject[subject]);
+      if (level && labels.level[level]) addChip(labels.level[level]);
+      if (priceMax) addChip("≤ $" + priceMax + "/hr");
+      if (ratingMin) addChip(ratingMin + "+ rating");
+      if (format && labels.format[format]) addChip(labels.format[format]);
+      days.forEach(function (d) {
+        if (labels.day[d]) addChip(labels.day[d]);
+      });
+
+      function matches(card) {
+        if (subject && card.dataset.subject !== subject) return false;
+        if (level && card.dataset.level !== level) return false;
+        if (format && card.dataset.format !== format) return false;
+        if (priceMax) {
+          var p = parseFloat(card.dataset.price, 10);
+          if (p > parseFloat(priceMax, 10)) return false;
+        }
+        if (ratingMin) {
+          if (parseFloat(card.dataset.rating, 10) < parseFloat(ratingMin, 10)) return false;
+        }
+        if (days.length) {
+          var cardDays = (card.dataset.days || "").split(",");
+          var ok = days.some(function (d) {
+            return cardDays.indexOf(d) !== -1;
+          });
+          if (!ok) return false;
+        }
+        if (q) {
+          var blob = (
+            card.dataset.name +
+            " " +
+            card.dataset.keywords +
+            " " +
+            card.textContent
+          ).toLowerCase();
+          if (blob.indexOf(q) === -1) return false;
+        }
+        return true;
+      }
+
+      var hasFilters =
+        q ||
+        subject ||
+        level ||
+        priceMax ||
+        ratingMin ||
+        format ||
+        days.length;
+
+      var visible = 0;
+      if (hasFilters) {
+        cards.forEach(function (card) {
+          var show = matches(card);
+          card.dataset.hidden = show ? "false" : "true";
+          if (show) visible++;
+        });
+      } else {
+        cards.forEach(function (card) {
+          card.dataset.hidden = "false";
+          visible++;
+        });
+      }
+
+      countEl.textContent =
+        visible === cards.length
+          ? "Showing all " + visible + " tutors"
+          : "Showing " + visible + " of " + cards.length + " tutors";
+
+      if (visible === 0 && hasFilters) {
+        emptyEl.hidden = false;
+        gridEl.hidden = true;
+      } else {
+        emptyEl.hidden = true;
+        gridEl.hidden = false;
+      }
+
+      var panel = document.getElementById("booking-panel");
+      var closeBtn = document.getElementById("booking-close");
+      var tutorNameEl = document.getElementById("booking-tutor-name");
+      var bookingForm = document.getElementById("booking-form");
+
+      function openPanel(name) {
+        tutorNameEl.textContent = "Booking with " + name;
+        panel.hidden = false;
+        panel.classList.add("is-open");
+        document.body.style.overflow = "hidden";
+        closeBtn.focus();
+      }
+
+      function closePanel() {
+        panel.classList.remove("is-open");
+        document.body.style.overflow = "";
+        setTimeout(function () {
+          panel.hidden = true;
+        }, 200);
+      }
+
+      document.querySelectorAll(".book-btn").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          openPanel(btn.getAttribute("data-tutor"));
+        });
+      });
+
+      closeBtn.addEventListener("click", closePanel);
+      panel.addEventListener("click", function (e) {
+        if (e.target === panel) closePanel();
+      });
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape" && panel.classList.contains("is-open")) closePanel();
+      });
+
+      bookingForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+        alert("Demo only — no request was sent. Connect a backend to store bookings.");
+        closePanel();
+        bookingForm.reset();
+      });
+    })();
+  </script>
+</body>
+</html>
