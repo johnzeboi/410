@@ -3,94 +3,104 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>PeerTutor — Student-to-student tutoring</title>
+  <title>SkillSwap — Student-to-student tutoring</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <header class="site-header">
     <div class="site-header__inner">
-      <a class="logo" href="index.html">Peer<span>Tutor</span></a>
+      <a class="logo" href="index.html">Skill<span>Swap</span></a>
       <nav class="nav-main" aria-label="Main">
         <a href="index.html" aria-current="page">Home</a>
-        <a href="search.html">Find tutors</a>
-        <a href="tutors.html">Browse &amp; book</a>
+        <a href="search.html">Find</a>
+        <a href="tutors.html">Tutors</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="messages.html">Messages</a>
+        <a href="schedule.html">Calendar</a>
+        <a href="admin.html">Admin</a>
       </nav>
     </div>
   </header>
 
   <main>
-    <div class="container">
-      <section class="hero">
-        <p class="hero__badge">By students, for students</p>
-        <h1>Learn from peers who aced the class you’re in</h1>
-        <p class="lead">
-          Book affordable one-on-one sessions in math, writing, CS, languages, and more. Verified student tutors, clear pricing, and flexible times that fit a real campus schedule.
-        </p>
-        <div class="hero__actions">
-          <a class="btn btn--primary" href="search.html">Search tutors</a>
-          <a class="btn btn--ghost" href="tutors.html">See who’s available</a>
-        </div>
-      </section>
+    <div class="hero-wrap">
+      <div class="blob blob--1" aria-hidden="true"></div>
+      <div class="blob blob--2" aria-hidden="true"></div>
+      <div class="container">
+        <section class="hero">
+          <p class="hero__badge">Swap skills · stay on budget</p>
+          <h1>The friendlier way to book peer tutoring</h1>
+          <p class="lead">
+            SkillSwap connects high school &amp; university students for 1:1 help. Smart AI matching, in-app chat, verified sessions, referrals, and dashboards that actually make sense between classes.
+          </p>
+          <div class="hero__actions">
+            <a class="btn btn--primary" href="search.html">Try smart matching</a>
+            <a class="btn btn--ghost" href="dashboard.html">Open dashboard</a>
+          </div>
+        </section>
 
-      <section class="section" aria-labelledby="why-heading">
-        <h2 id="why-heading" class="section__title">Why PeerTutor</h2>
-        <p class="section__intro">
-          A marketplace shaped like the tools you already use — simple search, honest reviews, and booking without the awkward DMs.
-        </p>
-        <div class="grid-3">
-          <article class="feature-card">
-            <div class="feature-card__icon" aria-hidden="true">◎</div>
-            <h3>Peer pricing</h3>
-            <p>Hourly rates set by students, often below traditional centers. Filter by budget before you commit.</p>
-          </article>
-          <article class="feature-card">
-            <div class="feature-card__icon" aria-hidden="true">✓</div>
-            <h3>Course-level match</h3>
-            <p>Tutors tag specific courses and levels so you’re not explaining your syllabus from scratch.</p>
-          </article>
-          <article class="feature-card">
-            <div class="feature-card__icon" aria-hidden="true">⏱</div>
-            <h3>Quick booking</h3>
-            <p>Pick a slot, send a short note, and confirm — all in one flow on the listings page.</p>
-          </article>
-        </div>
-      </section>
+        <section class="section" aria-labelledby="why-heading">
+          <h2 id="why-heading" class="section__title">Why students pick SkillSwap</h2>
+          <p class="section__intro">
+            Built like your group chat met a calendar: bubbly UI, honest reviews, and safety tools when something goes sideways.
+          </p>
+          <div class="grid-3">
+            <article class="feature-card">
+              <div class="feature-card__icon" aria-hidden="true">✦</div>
+              <h3>AI smart matching</h3>
+              <p>Describe what you need; we rank tutors by fit to your goals, level, and availability (demo uses on-device scoring).</p>
+            </article>
+            <article class="feature-card">
+              <div class="feature-card__icon" aria-hidden="true">💬</div>
+              <h3>Chat in the app</h3>
+              <p>Message before you book, keep context in one thread, and report issues without leaving the conversation.</p>
+            </article>
+            <article class="feature-card">
+              <div class="feature-card__icon" aria-hidden="true">🎓</div>
+              <h3>School &amp; session checks</h3>
+              <p>.edu verification plus a shared code so both sides confirm a session really happened.</p>
+            </article>
+          </div>
+        </section>
 
-      <section class="section" aria-labelledby="how-heading">
-        <h2 id="how-heading" class="section__title">How it works</h2>
-        <p class="section__intro">Three steps from search to session.</p>
-        <ol class="steps">
-          <li class="step">
-            <div>
-              <strong>Search with filters</strong>
-              <p style="margin: 0.35rem 0 0; color: var(--ink-muted); font-size: 0.95rem;">Subject, level, price, rating, and online or in-person.</p>
-            </div>
-          </li>
-          <li class="step">
-            <div>
-              <strong>Compare tutor profiles</strong>
-              <p style="margin: 0.35rem 0 0; color: var(--ink-muted); font-size: 0.95rem;">Read bios, reviews, and availability at a glance.</p>
-            </div>
-          </li>
-          <li class="step">
-            <div>
-              <strong>Book a session</strong>
-              <p style="margin: 0.35rem 0 0; color: var(--ink-muted); font-size: 0.95rem;">Choose length, time, and what you want to cover — your tutor gets the details instantly.</p>
-            </div>
-          </li>
-        </ol>
-      </section>
+        <section class="section" aria-labelledby="how-heading">
+          <h2 id="how-heading" class="section__title">How it works</h2>
+          <p class="section__intro">From search to session — with analytics for tutors and admins behind the scenes.</p>
+          <ol class="steps">
+            <li class="step">
+              <div>
+                <strong>Search or get matched</strong>
+                <p style="margin: 0.35rem 0 0; color: var(--ink-muted); font-size: 0.95rem; font-weight: 600;">Filters + SkillSwap Match™ suggestions point you to the right peer tutor faster.</p>
+              </div>
+            </li>
+            <li class="step">
+              <div>
+                <strong>Book &amp; add to your calendar</strong>
+                <p style="margin: 0.35rem 0 0; color: var(--ink-muted); font-size: 0.95rem; font-weight: 600;">Pick a time, drop it on your schedule page, and coordinate in Messages.</p>
+              </div>
+            </li>
+            <li class="step">
+              <div>
+                <strong>Verify &amp; refer friends</strong>
+                <p style="margin: 0.35rem 0 0; color: var(--ink-muted); font-size: 0.95rem; font-weight: 600;">Confirm sessions with a code, share your referral discount, and let admins monitor volume &amp; performance.</p>
+              </div>
+            </li>
+          </ol>
+        </section>
+      </div>
     </div>
   </main>
 
   <footer class="site-footer">
     <div class="site-footer__inner">
-      <p>© PeerTutor — demo layout for a student marketplace.</p>
-      <p><a href="search.html">Find a tutor</a></p>
+      <p>© SkillSwap — student marketplace demo (front-end only).</p>
+      <p><a href="search.html">Find tutors</a></p>
     </div>
   </footer>
+
+  <script src="skillswap.js"></script>
 </body>
 </html>

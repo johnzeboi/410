@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Messages — SkillSwap</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="logo" href="index.html">Skill<span>Swap</span></a>
+      <nav class="nav-main" aria-label="Main">
+        <a href="index.html">Home</a>
+        <a href="search.html">Find</a>
+        <a href="tutors.html">Tutors</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="messages.html" aria-current="page">Messages</a>
+        <a href="schedule.html">Calendar</a>
+        <a href="admin.html">Admin</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <header class="page-head">
+        <h1>Messages</h1>
+        <p>In-app chat (demo) — threads are saved in <code>localStorage</code> in this browser.</p>
+      </header>
+
+      <div class="msg-layout">
+        <aside class="msg-sidebar" aria-label="Conversations">
+          <ul class="msg-thread-list" id="thread-list"></ul>
+        </aside>
+        <section class="msg-pane" aria-label="Active conversation">
+          <div class="msg-pane__head">
+            <span id="msg-pane-title">Conversation</span>
+            <button type="button" class="btn btn--link" data-report-open data-report-user="" data-report-role="tutor" id="msg-report-btn">Report</button>
+          </div>
+          <div class="msg-pane__body" id="msg-pane-body"></div>
+          <form class="msg-compose" id="msg-form">
+            <input type="text" id="msg-input" placeholder="Type a message…" autocomplete="off" maxlength="2000" aria-label="Message text" />
+            <button type="submit" class="btn btn--primary btn--sm">Send</button>
+          </form>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <div class="modal-overlay" id="report-modal" hidden role="dialog" aria-modal="true" aria-labelledby="report-title">
+    <div class="modal-dialog modal-dialog--wide">
+      <div class="modal-head">
+        <h2 id="report-title">Report a user</h2>
+        <button type="button" class="modal-close" data-close-report aria-label="Close">×</button>
+      </div>
+      <form class="modal-body" id="report-form">
+        <input type="hidden" id="report-target" name="target" />
+        <input type="hidden" id="report-target-role" name="targetRole" />
+        <div class="field">
+          <label for="report-type">What’s going on?</label>
+          <select id="report-type" name="type">
+            <option value="safety">Safety / harassment</option>
+            <option value="no-show">No-show / fraud</option>
+            <option value="quality">Session quality</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="report-details">Details</label>
+          <textarea id="report-details" name="details" rows="4" required placeholder="What happened?"></textarea>
+        </div>
+        <button type="submit" class="btn btn--primary">Submit report</button>
+      </form>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <p>© SkillSwap — student marketplace demo.</p>
+      <p><a href="tutors.html">Book a tutor</a></p>
+    </div>
+  </footer>
+
+  <script src="skillswap.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      var reportBtn = document.getElementById("msg-report-btn");
+      var titleEl = document.getElementById("msg-pane-title");
+      function syncReportTarget() {
+        if (reportBtn && titleEl) {
+          reportBtn.setAttribute("data-report-user", titleEl.textContent.trim());
+        }
+      }
+      syncReportTarget();
+      var obs = new MutationObserver(syncReportTarget);
+      if (titleEl) obs.observe(titleEl, { childList: true, characterData: true, subtree: true });
+    });
+  </script>
+</body>
+</html>

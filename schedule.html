@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Schedule — SkillSwap</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="logo" href="index.html">Skill<span>Swap</span></a>
+      <nav class="nav-main" aria-label="Main">
+        <a href="index.html">Home</a>
+        <a href="search.html">Find</a>
+        <a href="tutors.html">Tutors</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="messages.html">Messages</a>
+        <a href="schedule.html" aria-current="page">Calendar</a>
+        <a href="admin.html">Admin</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <header class="page-head">
+        <h1>Your schedule</h1>
+        <p>Month view with sample sessions — connect to real bookings from your backend.</p>
+      </header>
+
+      <section class="dash-card">
+        <div id="schedule-calendar" aria-label="Monthly calendar"></div>
+      </section>
+
+      <section class="dash-card" style="margin-top: 1.5rem">
+        <h2>Upcoming</h2>
+        <ul class="session-list">
+          <li><strong>Mar 5</strong> · 4:00 PM — Calc II with Jordan (online)</li>
+          <li><strong>Mar 7</strong> · 2:00 PM — CS help with Sam</li>
+          <li><strong>Mar 14</strong> · 11:00 AM — Writing lab with Alex</li>
+        </ul>
+        <a class="btn btn--primary btn--sm" href="tutors.html">Book another session</a>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <p>© SkillSwap — student marketplace demo.</p>
+      <p><a href="dashboard.html">Dashboard</a></p>
+    </div>
+  </footer>
+
+  <script src="skillswap.js"></script>
+</body>
+</html>

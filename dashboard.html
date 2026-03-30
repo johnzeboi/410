@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dashboard — SkillSwap</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="logo" href="index.html">Skill<span>Swap</span></a>
+      <nav class="nav-main" aria-label="Main">
+        <a href="index.html">Home</a>
+        <a href="search.html">Find</a>
+        <a href="tutors.html">Tutors</a>
+        <a href="dashboard.html" aria-current="page">Dashboard</a>
+        <a href="messages.html">Messages</a>
+        <a href="schedule.html">Calendar</a>
+        <a href="admin.html">Admin</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <header class="page-head">
+        <h1>Your dashboard</h1>
+        <p>Switch between student and tutor tools — demo UI wired to your browser storage.</p>
+      </header>
+
+      <div class="dashboard-tabs" role="tablist">
+        <button type="button" class="tab-btn" role="tab" aria-selected="true" aria-controls="panel-student" id="tab-student">Student</button>
+        <button type="button" class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-tutor" id="tab-tutor">Tutor</button>
+      </div>
+
+      <div id="panel-student" class="tab-panel" role="tabpanel" aria-labelledby="tab-student">
+        <div class="dash-grid">
+          <section class="dash-card">
+            <h2>School verification</h2>
+            <p id="school-status"></p>
+            <div class="field">
+              <label for="school-email">School email</label>
+              <input type="email" id="school-email" placeholder="you@university.edu" autocomplete="email" />
+            </div>
+            <button type="button" class="btn btn--secondary" id="school-verify-btn">Verify (demo)</button>
+            <p class="admin-note">Production: send a magic link or SSO; we only check for <code>.edu</code> here.</p>
+          </section>
+
+          <section class="dash-card">
+            <h2>Session verification</h2>
+            <p>After a session, both sides confirm with the same 6-digit code (demo code below).</p>
+            <div class="verify-code" id="session-code-demo" aria-live="polite">847291</div>
+            <div class="field">
+              <label for="verify-code-input">Enter code (student)</label>
+              <input type="text" id="verify-code-input" inputmode="numeric" maxlength="8" placeholder="6 digits" />
+            </div>
+            <button type="button" class="btn btn--primary btn--sm" id="verify-student-btn">I attended — verify</button>
+            <p class="admin-note" style="margin-top: 1rem;">Tutor side:</p>
+            <button type="button" class="btn btn--ghost btn--sm" id="verify-tutor-btn">Mark session complete</button>
+          </section>
+
+          <section class="dash-card">
+            <h2>This month</h2>
+            <div id="dashboard-calendar" aria-label="Calendar"></div>
+            <p class="admin-note">Highlighted days = booked sessions (sample data). <a href="schedule.html">Full schedule →</a></p>
+          </section>
+
+          <section class="dash-card">
+            <h2>Referrals &amp; sharing</h2>
+            <p>Give friends <strong>10% off</strong> their first session when they use your code.</p>
+            <div class="referral-box">
+              Your code: <span class="referral-code-display" id="referral-code">…</span>
+              <button type="button" class="btn btn--primary btn--sm" id="referral-copy">Copy code</button>
+            </div>
+            <label class="field" for="promo-caption" style="margin-top: 1rem;">Suggested post (Instagram / TikTok / Discord)</label>
+            <textarea class="promo-caption" id="promo-caption" readonly>Swap skills, not stress 💛 I’m on SkillSwap for peer tutoring — use my code for 10% off your first session! #StudyTok #SkillSwap</textarea>
+            <p class="admin-note">Track referral redemptions in admin analytics in a real deployment.</p>
+          </section>
+        </div>
+        <p style="margin-top: 1.5rem; font-weight: 700;"><a class="btn btn--secondary" href="messages.html">Open messages</a></p>
+      </div>
+
+      <div id="panel-tutor" class="tab-panel" role="tabpanel" aria-labelledby="tab-tutor" hidden>
+        <div class="dash-grid">
+          <section class="dash-card">
+            <h2>Tutor performance (analytics)</h2>
+            <p>Snapshot from tracked events + sample completion scores.</p>
+            <div id="analytics-tutor-perf-mini"></div>
+            <p class="admin-note">Admins see cohort-wide stats on the <a href="admin.html">Admin</a> page.</p>
+          </section>
+          <section class="dash-card">
+            <h2>Upcoming sessions</h2>
+            <ul class="session-list">
+              <li>Wed 4:00 PM · Jamie — Calc II (online)</li>
+              <li>Sat 10:00 AM · Riley — Exam review</li>
+            </ul>
+          </section>
+          <section class="dash-card">
+            <h2>Grow your roster</h2>
+            <p>Share your profile off-platform; referrals boost visibility in <strong>smart matching</strong> (demo).</p>
+            <textarea class="promo-caption" readonly>Book me on SkillSwap for 1:1 help — I teach [your subjects]. Link in bio ✨</textarea>
+          </section>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <p>© SkillSwap — student marketplace demo.</p>
+      <p><a href="search.html">Find tutors</a></p>
+    </div>
+  </footer>
+
+  <script src="skillswap.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      var mini = document.getElementById("analytics-tutor-perf-mini");
+      if (mini && window.SkillSwap) {
+        var s = SkillSwap.getAnalyticsSummary();
+        mini.innerHTML =
+          "<p style='font-weight:800;margin:0 0 .5rem'>Events logged in this browser: " +
+          s.total +
+          "</p><p class='admin-note'>Smart matching uses your goals + availability; production would call an AI ranking API.</p>";
+      }
+      var tabs = document.querySelectorAll(".dashboard-tabs .tab-btn");
+      var panels = document.querySelectorAll(".tab-panel");
+      tabs.forEach(function (tab) {
+        tab.addEventListener("click", function () {
+          var id = tab.getAttribute("aria-controls");
+          tabs.forEach(function (t) {
+            t.setAttribute("aria-selected", t === tab ? "true" : "false");
+          });
+          panels.forEach(function (p) {
+            p.hidden = p.id !== id;
+          });
+        });
+      });
+    });
+  </script>
+</body>
+</html>

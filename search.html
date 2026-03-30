@@ -3,20 +3,24 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Find tutors — PeerTutor</title>
+  <title>Find tutors — SkillSwap</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <header class="site-header">
     <div class="site-header__inner">
-      <a class="logo" href="index.html">Peer<span>Tutor</span></a>
+      <a class="logo" href="index.html">Skill<span>Swap</span></a>
       <nav class="nav-main" aria-label="Main">
         <a href="index.html">Home</a>
-        <a href="search.html" aria-current="page">Find tutors</a>
-        <a href="tutors.html">Browse &amp; book</a>
+        <a href="search.html" aria-current="page">Find</a>
+        <a href="tutors.html">Tutors</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="messages.html">Messages</a>
+        <a href="schedule.html">Calendar</a>
+        <a href="admin.html">Admin</a>
       </nav>
     </div>
   </header>
@@ -25,8 +29,24 @@
     <div class="container">
       <header class="page-head">
         <h1>Find your tutor</h1>
-        <p>Set filters below, then open matching listings to book a session.</p>
+        <p>Use smart matching or classic filters — then jump to bookable profiles.</p>
       </header>
+
+      <section class="ai-match-card" aria-labelledby="ai-match-heading">
+        <h2 id="ai-match-heading">
+          SkillSwap Match
+          <span class="ai-badge">AI-style</span>
+        </h2>
+        <p style="margin: 0 0 0.75rem; font-weight: 600; color: var(--ink-muted);">
+          Describe your goal in plain language. We score tutors on-device from keywords, subject, level, and price (production: call your ranking model API).
+        </p>
+        <div class="field">
+          <label for="ai-goal">What do you need help with?</label>
+          <textarea id="ai-goal" rows="3" placeholder="e.g. I’m struggling with Python data structures before my midterm next week…"></textarea>
+        </div>
+        <button type="button" class="btn btn--secondary" id="ai-run-match">Run smart match</button>
+        <div class="match-results" id="ai-match-results" hidden></div>
+      </section>
 
       <div class="search-layout">
         <aside class="filters" aria-labelledby="filters-heading">
@@ -85,7 +105,7 @@
             </div>
 
             <fieldset class="field" style="border: none; padding: 0; margin: 0 0 1rem;">
-              <legend style="font-size: 0.85rem; font-weight: 600; color: var(--ink-muted); margin-bottom: 0.35rem;">Availability (days)</legend>
+              <legend style="font-size: 0.85rem; font-weight: 800; color: var(--ink-muted); margin-bottom: 0.35rem;">Availability (days)</legend>
               <div class="checkbox-group">
                 <label><input type="checkbox" name="day" value="mon" /> Monday</label>
                 <label><input type="checkbox" name="day" value="wed" /> Wednesday</label>
@@ -102,7 +122,7 @@
 
         <div>
           <p class="search-hint">
-            <strong>Tip:</strong> Use keywords plus subject for the best results. On the next page, listings update from the query string in your address bar (demo behavior).
+            <strong>Tip:</strong> Tutors page reads the query string from this form. Smart match results link there with pre-filled keywords.
           </p>
           <section aria-labelledby="preview-heading">
             <h2 id="preview-heading" class="section__title" style="text-align: left; margin-bottom: 0.75rem;">Popular right now</h2>
@@ -113,7 +133,7 @@
                   <div class="tutor-card__head">
                     <h3>Calculus &amp; linear algebra</h3>
                     <p class="tutor-card__meta">Undergrad · Online</p>
-                    <p class="tutor-card__rating" aria-label="Rating 4.9 out of 5">★ 4.9 <span style="color: var(--ink-muted); font-weight: 500;">(62)</span></p>
+                    <p class="tutor-card__rating" aria-label="Rating 4.9 out of 5">★ 4.9 <span style="color: var(--ink-muted); font-weight: 700;">(62)</span></p>
                   </div>
                 </div>
                 <div class="tutor-card__body">
@@ -137,9 +157,69 @@
 
   <footer class="site-footer">
     <div class="site-footer__inner">
-      <p>© PeerTutor — demo layout for a student marketplace.</p>
+      <p>© SkillSwap — student marketplace demo.</p>
       <p><a href="index.html">Home</a></p>
     </div>
   </footer>
+
+  <script src="skillswap.js"></script>
+  <script>
+    (function () {
+      var TUTORS = [
+        { name: "Jordan Lee", subject: "math", level: "ug", price: 28, rating: 4.8, keywords: "calculus algebra homework exam proof", format: "online" },
+        { name: "Sam Rivera", subject: "cs", level: "ug", price: 35, rating: 4.9, keywords: "python data structures algorithms project debug", format: "online" },
+        { name: "Alex Chen", subject: "writing", level: "ug", price: 22, rating: 4.7, keywords: "essay english thesis rhetoric paper humanities", format: "inperson" },
+        { name: "Morgan Patel", subject: "languages", level: "hs", price: 18, rating: 4.6, keywords: "spanish conversation grammar ap language", format: "online" },
+        { name: "Riley Brooks", subject: "science", level: "grad", price: 45, rating: 5, keywords: "chemistry organic lab ochem mechanism", format: "online" },
+        { name: "Casey Nguyen", subject: "math", level: "ug", price: 30, rating: 4.9, keywords: "statistics r probability regression stats", format: "inperson" },
+      ];
+
+      function scoreGoal(text, t) {
+        var blob = (t.name + " " + t.keywords + " " + t.subject).toLowerCase();
+        var words = text.toLowerCase().split(/\s+/).filter(function (w) {
+          return w.length > 2;
+        });
+        var hits = 0;
+        words.forEach(function (w) {
+          if (blob.indexOf(w) !== -1) hits++;
+        });
+        var r = parseFloat(t.rating, 10) * 8;
+        var p = Math.max(0, 50 - parseFloat(t.price, 10));
+        return Math.round(hits * 22 + r + p);
+      }
+
+      document.getElementById("ai-run-match").addEventListener("click", function () {
+        var text = (document.getElementById("ai-goal").value || "").trim();
+        var out = document.getElementById("ai-match-results");
+        if (!text) {
+          alert("Tell us a bit about what you need — even one sentence helps.");
+          return;
+        }
+        if (window.SkillSwap) SkillSwap.logEvent("smart_match_run", { len: text.length });
+        var ranked = TUTORS.map(function (t) {
+          return { t: t, s: scoreGoal(text, t) };
+        }).sort(function (a, b) {
+          return b.s - a.s;
+        });
+        out.hidden = false;
+        out.innerHTML = "";
+        ranked.slice(0, 4).forEach(function (row, i) {
+          var div = document.createElement("div");
+          div.className = "match-row";
+          div.innerHTML =
+            "<span><strong>#" +
+            (i + 1) +
+            "</strong> " +
+            row.t.name +
+            "</span><small>Match " +
+            row.s +
+            "%</small><a class='btn btn--primary btn--sm' href='tutors.html?q=" +
+            encodeURIComponent(text.slice(0, 40)) +
+            "'>View</a>";
+          out.appendChild(div);
+        });
+      });
+    })();
+  </script>
 </body>
 </html>

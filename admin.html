@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Admin — SkillSwap</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="logo" href="index.html">Skill<span>Swap</span></a>
+      <nav class="nav-main" aria-label="Main">
+        <a href="index.html">Home</a>
+        <a href="search.html">Find</a>
+        <a href="tutors.html">Tutors</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="messages.html">Messages</a>
+        <a href="schedule.html">Calendar</a>
+        <a href="admin.html" aria-current="page">Admin</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <header class="page-head">
+        <h1>Admin console</h1>
+        <p>Ban users, review reports, and skim analytics volume (demo — persists in this browser only).</p>
+      </header>
+
+      <section class="dash-card" style="margin-bottom: 1.5rem">
+        <h2>Web analytics</h2>
+        <p>Track page views, referrals, reports, and verification events for volume trends.</p>
+        <div id="analytics-volume"></div>
+        <p class="admin-note">Production: pipe <code>SkillSwap.logEvent</code> equivalents to Plausible, GA4, Mixpanel, or your warehouse.</p>
+      </section>
+
+      <section class="dash-card" style="margin-bottom: 1.5rem">
+        <h2>Tutor performance (ranking preview)</h2>
+        <p>Composite score mock — blend ratings, completions, and platform engagement.</p>
+        <div class="analytics-bars" id="analytics-tutor-perf"></div>
+      </section>
+
+      <section class="dash-card" style="margin-bottom: 1.5rem">
+        <h2>Users &amp; bans</h2>
+        <div class="admin-table-wrap">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Role</th>
+                <th>Sessions (demo)</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody data-admin-users></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="dash-card">
+        <h2>Reports queue</h2>
+        <p class="admin-note">Submitted by students &amp; tutors from Report buttons across the app.</p>
+        <div class="admin-table-wrap">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Time</th>
+                <th>Subject</th>
+                <th>Type</th>
+                <th>Summary</th>
+              </tr>
+            </thead>
+            <tbody data-admin-reports></tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <p>© SkillSwap — student marketplace demo.</p>
+      <p><a href="index.html">Home</a></p>
+    </div>
+  </footer>
+
+  <script src="skillswap.js"></script>
+</body>
+</html>
